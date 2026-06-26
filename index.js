@@ -1,7 +1,8 @@
 // Kiosk Logic for CAARMS 2026 Big Agenda Dashboard
+// Auto-refresh interval: the client pulls agenda_data.json every 30 seconds to capture updates.
 
 let agendaData = null;
-let activeDay = "2026-06-29"; // Default to Monday
+let activeDay = null; // Dynamically resolved on load to default to Sunday, June 28
 let activeEventIndex = -1;
 let autoCycleTimer = null;
 let idleTimer = null;
@@ -10,6 +11,34 @@ const CYCLE_INTERVAL_MS = 30000; // Cycle day tabs every 30 seconds
 
 // List of dates in order
 const conferenceDates = ["2026-06-28", "2026-06-29", "2026-06-30", "2026-07-01"];
+
+// Timezone Helper: Construct a date object representing America/New_York local time
+function getNewYorkDate() {
+  const now = new Date();
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  });
+  
+  const parts = formatter.formatToParts(now);
+  const partMap = {};
+  parts.forEach(p => partMap[p.type] = p.value);
+  
+  return new Date(
+    partMap.year,
+    partMap.month - 1,
+    partMap.day,
+    partMap.hour,
+    partMap.minute,
+    partMap.second
+  );
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   initClock();
@@ -36,19 +65,37 @@ function initClock() {
   function updateClock() {
     const now = new Date();
     
-    // Time format: HH:MM
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // 12 instead of 0
-    minutes = minutes < 10 ? '0' + minutes : minutes;
+    // Time format in America/New_York
+    const optionsTime = {
+      timeZone: "America/New_York",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    };
+    
+    const timeParts = now.toLocaleTimeString("en-US", optionsTime).split(" ");
+    const timeStr = timeParts[0]; // e.g. "3:00"
+    const ampmStr = timeParts[1]; // e.g. "PM"
+    
+    const colonIndex = timeStr.indexOf(":");
+    let html = timeStr;
+    if (colonIndex !== -1) {
+      const hr = timeStr.substring(0, colonIndex);
+      const min = timeStr.substring(colonIndex + 1);
+      html = `${hr}<span class="clock-colon">:</span>${min}`;
+    }
 
-    timeEl.innerHTML = `${hours}<span class="clock-colon">:</span>${minutes} <span style="font-size: 1.5rem; font-weight: 600;">${ampm}</span>`;
+    timeEl.innerHTML = `${html} <span style="font-size: 1.5rem; font-weight: 600;">${ampmStr}</span>`;
 
-    // Date format: Sunday, June 28, 2026
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    dateEl.innerText = now.toLocaleDateString('en-US', options);
+    // Date format in America/New_York
+    const optionsDate = {
+      timeZone: "America/New_York",
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    };
+    dateEl.innerText = now.toLocaleDateString("en-US", optionsDate);
   }
 
   updateClock();
@@ -100,7 +147,7 @@ async function loadAgendaData() {
     renderDaySelectors();
     selectDay(activeDay, false);
     
-    document.getElementById("last-updated-time").innerText = new Date().toLocaleTimeString();
+    document.getElementById("last-updated-time").innerText = new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York" });
   } catch (err) {
     console.error("Error loading agenda data:", err);
   }
@@ -108,8 +155,8 @@ async function loadAgendaData() {
 
 // 4. Day Navigation Logic
 function determineInitialDay() {
-  // Try to match current calendar date
-  const now = new Date();
+  // Try to match current calendar date in America/New_York
+  const now = getNewYorkDate();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, '0');
   const day = String(now.getDate()).padStart(2, '0');
@@ -230,11 +277,13 @@ function renderTimeline() {
 }
 
 // 6. Highlight Active Event & Populate Sidebar
-function parseEventTimeRange(timeStr) {
+function parseEventTimeRange(timeStr, activeDayStr) {
   // Parses a string like "3:00 pm - 5:30 pm" or "8:00 am - 9:00 am"
-  // Returns { start: Date, end: Date } based on today's calendar date
+  // Returns { start: Date, end: Date } based on activeDayStr calendar date
   const parts = timeStr.split("-");
   if (parts.length !== 2) return null;
+
+  const [yr, mo, dy] = activeDayStr.split("-").map(Number);
 
   function parseTime(str) {
     str = str.trim().toLowerCase();
@@ -248,9 +297,7 @@ function parseEventTimeRange(timeStr) {
     if (ampm === "pm" && hr < 12) hr += 12;
     if (ampm === "am" && hr === 12) hr = 0;
 
-    const d = new Date();
-    d.setHours(hr, min, 0, 0);
-    return d;
+    return new Date(yr, mo - 1, dy, hr, min, 0, 0);
   }
 
   const start = parseTime(parts[0]);
@@ -264,17 +311,23 @@ function updateActiveEventHighlighting() {
   if (!agendaData || !agendaData[activeDay]) return;
 
   const events = agendaData[activeDay].events;
-  const now = new Date();
+  const now = getNewYorkDate();
   
   // Set pre-conference check (First event: Sunday, June 28 at 3:00 pm)
-  const firstEventTime = new Date("2026-06-28T15:00:00");
+  const firstEventTime = new Date(2026, 5, 28, 15, 0, 0); // June 28, 3:00 PM (month is 0-indexed)
   const isPreConference = now < firstEventTime;
   
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const todayStr = `${year}-${month}-${day}`;
+  const isToday = (activeDay === todayStr);
+
   let currentActiveIdx = -1;
   let upcomingIdx = -1;
 
   for (let i = 0; i < events.length; i++) {
-    const range = parseEventTimeRange(events[i].time);
+    const range = parseEventTimeRange(events[i].time, activeDay);
     if (range) {
       if (now >= range.start && now <= range.end) {
         currentActiveIdx = i;
@@ -299,14 +352,18 @@ function updateActiveEventHighlighting() {
       labelText = "Upcoming Session";
     }
   } else {
-    if (currentActiveIdx !== -1) {
-      targetIdx = currentActiveIdx;
-      labelText = "Now Happening";
-    } else if (upcomingIdx !== -1) {
-      targetIdx = upcomingIdx;
-      labelText = "Up Next";
-    } else if (events.length > 0) {
-      // If all events finished for the day, default to first event or last event
+    if (isToday) {
+      if (currentActiveIdx !== -1) {
+        targetIdx = currentActiveIdx;
+        labelText = "Now Happening";
+      } else if (upcomingIdx !== -1) {
+        targetIdx = upcomingIdx;
+        labelText = "Up Next";
+      } else {
+        targetIdx = 0;
+        labelText = "Schedule Item";
+      }
+    } else {
       targetIdx = 0;
       labelText = "Schedule Item";
     }
