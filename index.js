@@ -266,6 +266,10 @@ function updateActiveEventHighlighting() {
   const events = agendaData[activeDay].events;
   const now = new Date();
   
+  // Set pre-conference check (First event: Sunday, June 28 at 3:00 pm)
+  const firstEventTime = new Date("2026-06-28T15:00:00");
+  const isPreConference = now < firstEventTime;
+  
   let currentActiveIdx = -1;
   let upcomingIdx = -1;
 
@@ -286,16 +290,26 @@ function updateActiveEventHighlighting() {
   let targetIdx = -1;
   let labelText = "Upcoming Session";
 
-  if (currentActiveIdx !== -1) {
-    targetIdx = currentActiveIdx;
-    labelText = "Now Happening";
-  } else if (upcomingIdx !== -1) {
-    targetIdx = upcomingIdx;
-    labelText = "Up Next";
-  } else if (events.length > 0) {
-    // If all events finished for the day, default to first event or last event
-    targetIdx = 0;
-    labelText = "Schedule Item";
+  if (isPreConference) {
+    if (activeDay === "2026-06-28") {
+      targetIdx = 0;
+      labelText = "Now Happening";
+    } else {
+      targetIdx = 0;
+      labelText = "Upcoming Session";
+    }
+  } else {
+    if (currentActiveIdx !== -1) {
+      targetIdx = currentActiveIdx;
+      labelText = "Now Happening";
+    } else if (upcomingIdx !== -1) {
+      targetIdx = upcomingIdx;
+      labelText = "Up Next";
+    } else if (events.length > 0) {
+      // If all events finished for the day, default to first event or last event
+      targetIdx = 0;
+      labelText = "Schedule Item";
+    }
   }
 
   // Update Highlight UI
@@ -352,13 +366,16 @@ function highlightFeaturedEvent(index, labelOverride = null) {
     talkTitleEl.innerText = ev.speaker ? ev.title : "";
     abstractEl.innerText = ev.abstract || "No abstract available for this talk.";
 
-    // Avatar resolution
+    // Avatar resolution - hide avatar container completely if there is no speaker image
+    const avatarCropEl = document.querySelector(".speaker-avatar-crop");
     if (ev.image) {
       avatarEl.src = ev.image;
       avatarEl.style.display = "block";
+      if (avatarCropEl) avatarCropEl.style.display = "block";
     } else {
-      // Fallback placeholder
-      avatarEl.src = "caarms.png"; 
+      avatarEl.src = "";
+      avatarEl.style.display = "none";
+      if (avatarCropEl) avatarCropEl.style.display = "none";
     }
   }
 

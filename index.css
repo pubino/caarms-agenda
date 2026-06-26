@@ -20,15 +20,17 @@ body {
 
 /* Header Override to match site */
 header.header {
-  background-color: var(--neutral-dark) !important;
-  color: #fff !important;
+  background-color: #ffffff !important;
+  color: var(--neutral-dark) !important;
+  border-bottom: 1px solid var(--border-color) !important;
   flex-shrink: 0;
   width: 100%;
 }
 
 .princeton-branding {
-  background-color: #000;
+  background-color: #ffffff !important;
   padding: 8px 0;
+  border-bottom: 1px solid var(--border-color) !important;
 }
 
 .princeton-branding img {
@@ -36,6 +38,7 @@ header.header {
 }
 
 .site-branding {
+  background-color: #ffffff !important;
   padding: 15px 0;
 }
 
@@ -46,8 +49,8 @@ header.header {
 }
 
 .site-logo img {
-  height: 55px;
-  width: auto;
+  height: 75px !important;
+  width: auto !important;
 }
 
 .site-info {
