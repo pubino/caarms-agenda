@@ -1,0 +1,4 @@
+.env
+__pycache__/
+images/speakers/
+agenda_data.json

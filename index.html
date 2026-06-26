@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAARMS 2026 - Kiosk Schedule Dashboard</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Native CAARMS styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/base_styles.css">
+  <link rel="stylesheet" href="css/tiger_styles.css">
+  <link rel="stylesheet" href="css/align_header.css">
+  <link rel="stylesheet" href="css/site_title.css">
+  <link rel="stylesheet" href="css/sponsorship.css">
+  
+  <!-- Custom Flat Dashboard Styles -->
+  <link rel="stylesheet" href="index.css">
+  
+  <!-- QRCode.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- NATIVE-LOOKING CAARMS HEADER -->
+  <header role="banner" class="header region region-header" id="header">
+    <div class="princeton-branding">
+      <div class="container-fluid px-4">
+        <a href="http://www.princeton.edu" class="pu-logo" title="Princeton University">
+          <img src="pu-logo.svg" alt="Princeton University"/>
+        </a>
+      </div>
+    </div>
+
+    <div class="site-branding">
+      <div class="container-fluid px-4">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <a href="/" title="Home" rel="home" class="site-logo" tabindex="-1" aria-hidden="true">
+              <img class="sizing-custom" src="caarms.png" alt="Home" />
+            </a>
+          </div>
+          <div class="col">
+            <div class="site-info with-slogan with-slogan-suffix">
+              <div class="site-name">
+                <a href="/" title="Home" rel="home">The Official Site for CAARMS 2026</a>
+              </div>
+              <div class="site-slogan">
+                Held this Year at Princeton University - Sunday, June 28 – Wednesday, July 1, 2026
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- KIOSK DASHBOARD MAIN BODY -->
+  <div class="dashboard-body">
+    
+    <!-- LEFT PANEL: TIMELINE SCHEDULE (60%) -->
+    <div class="timeline-pane">
+      
+      <!-- Day Selector (Flat tabs) -->
+      <div class="flat-card" style="padding: 0.8rem 1.2rem;">
+        <ul class="events-list-conference-day-tabs">
+          <li><button class="day-tab-btn active" data-day="2026-06-28">Sunday, June 28</button></li>
+          <li><button class="day-tab-btn" data-day="2026-06-29">Monday, June 29</button></li>
+          <li><button class="day-tab-btn" data-day="2026-06-30">Tuesday, June 30</button></li>
+          <li><button class="day-tab-btn" data-day="2026-07-01">Wednesday, July 1</button></li>
+        </ul>
+      </div>
+      
+      <!-- Scrollable events timetable (styled with native classes) -->
+      <div class="flat-card scrollable-schedule-container">
+        <div class="events-list-conference-items-outer">
+          <div class="events-list-conference-items-inner" role="list" id="events-timeline-container">
+            <!-- Timetable items will be rendered dynamically by JavaScript -->
+            <div class="text-center text-muted py-5">
+              <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem; color: var(--brand-orange);"></i>
+              <div>Loading schedule details...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- RIGHT PANEL: SIDEBAR PANEL (40%) -->
+    <div class="sidebar-pane">
+      
+      <!-- Clock & Scan section -->
+      <div class="flat-card clock-scan-section">
+        <div class="kiosk-clock">
+          <div class="clock-digits" id="kiosk-time">--:-- --</div>
+          <div class="clock-date-text" id="kiosk-date">Loading date...</div>
+        </div>
+        
+        <div class="kiosk-qr-area">
+          <div class="kiosk-qr-box" id="qrcode"></div>
+          <div class="kiosk-qr-label">Scan Agenda</div>
+        </div>
+      </div>
+      
+      <!-- Featured Speaker Node details -->
+      <div class="flat-card featured-event-pane">
+        <div class="featured-label">
+          <span class="featured-label-dot"></span>
+          <span id="featured-tag-text">Featured Session</span>
+        </div>
+        
+        <!-- Speaker summary panel -->
+        <div class="featured-talk-info" id="featured-detail-content">
+          <div class="speaker-profile" id="featured-speaker-profile">
+            <div class="speaker-avatar-crop">
+              <img src="caarms.png" alt="Speaker Photo" class="speaker-avatar-img" id="featured-speaker-avatar">
+            </div>
+            <div class="speaker-profile-meta">
+              <div class="speaker-profile-name" id="featured-speaker-name">Speaker Name</div>
+              <div class="speaker-profile-affiliation" id="featured-speaker-affiliation">Affiliation...</div>
+            </div>
+          </div>
+          
+          <div class="featured-talk-title" id="featured-talk-title">Talk Title...</div>
+          
+          <div class="featured-talk-abstract-wrapper">
+            <div class="featured-talk-abstract" id="featured-talk-abstract">
+              Loading session abstract details...
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <!-- Kiosk Status Footer -->
+  <div class="dashboard-footer">
+    <div>CAARMS 2026 Kiosk Dashboard</div>
+    <div>
+      <i class="fa-solid fa-rotate" style="margin-right: 4px; color: var(--brand-orange);"></i>
+      <span>Synced:</span>
+      <span id="last-updated-time">--:--:--</span>
+    </div>
+  </div>
+
+  <!-- Kiosk script -->
+  <script src="index.js"></script>
+</body>
+</html>

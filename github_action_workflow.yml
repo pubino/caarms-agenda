@@ -1,0 +1,46 @@
+name: Crawl and Sync CAARMS Agenda
+
+on:
+  schedule:
+    # Run every 15 minutes to capture last-minute updates
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    # Allow manual triggering from the GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Run Crawler Script
+      env:
+        # Pass the bot bypass headers from GitHub secrets
+        BYPASS_HEADER_NAME: ${{ secrets.BYPASS_HEADER_NAME }}
+        BYPASS_HEADER_VALUE: ${{ secrets.BYPASS_HEADER_VALUE }}
+      run: |
+        cd frontend/big-agenda
+        python crawl.py
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "GitHub Actions Bot"
+        git config --global user.email "actions@github.com"
+        git add frontend/big-agenda/agenda_data.json frontend/big-agenda/images/speakers/
+        # Check if there are any changes to commit to prevent exit code errors
+        if git diff --staged --quiet; then
+          echo "No changes in agenda data. Skipping commit."
+        else
+          git commit -m "chore: auto-update agenda data and speaker images"
+          git push
+        fi

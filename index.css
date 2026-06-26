@@ -1,0 +1,495 @@
+/* CAARMS 2026 Kiosk Dashboard - Native Site Styling Overlay */
+
+:root {
+  --brand-orange: #f58025;
+  --neutral-dark: #1a1a1a;
+  --bg-site: #f6f6f6;
+  --border-color: #e2e8f0;
+}
+
+body {
+  background-color: var(--bg-site) !important;
+  color: var(--neutral-dark) !important;
+  font-family: "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif !important;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Override to match site */
+header.header {
+  background-color: var(--neutral-dark) !important;
+  color: #fff !important;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.princeton-branding {
+  background-color: #000;
+  padding: 8px 0;
+}
+
+.princeton-branding img {
+  height: 22px;
+}
+
+.site-branding {
+  padding: 15px 0;
+}
+
+.site-branding .row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.site-logo img {
+  height: 55px;
+  width: auto;
+}
+
+.site-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-name a {
+  color: #fff !important;
+  font-family: "Georgia", serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.site-slogan {
+  color: var(--brand-orange) !important;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* Dashboard Container */
+.dashboard-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 1.5rem;
+  gap: 1.5rem;
+}
+
+/* Left Schedule Timeline Column (60%) */
+.timeline-pane {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+}
+
+/* Right Detail Sidebar Column (40%) */
+.sidebar-pane {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+  min-width: 400px;
+}
+
+/* Solid Flat Cards */
+.flat-card {
+  background-color: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* Tab buttons overlay to match Drupal day selectors */
+.events-list-conference-day-tabs {
+  display: flex !important;
+  gap: 8px !important;
+  list-style: none !important;
+  margin-bottom: 0 !important;
+  padding-left: 0 !important;
+}
+
+.day-tab-btn {
+  background-color: #e2e8f0 !important;
+  border: 1px solid #cbd5e0 !important;
+  color: var(--neutral-dark) !important;
+  padding: 0.6rem 1.2rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.day-tab-btn:hover {
+  background-color: #cbd5e0 !important;
+}
+
+.day-tab-btn.active {
+  background-color: var(--brand-orange) !important;
+  border-color: var(--brand-orange) !important;
+  color: #ffffff !important;
+}
+
+/* Scrollable Schedule List */
+.scrollable-schedule-container {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.scrollable-schedule-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Timeline vertical line overrides */
+.events-list-conference-items-inner {
+  position: relative;
+}
+
+/* Individual list item styles */
+.events-list-conference-item {
+  display: flex !important;
+  background-color: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 10px !important;
+  margin-bottom: 12px !important;
+  padding: 15px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer;
+}
+
+.events-list-conference-item:hover {
+  border-color: #cbd5e0 !important;
+  background-color: #fafafa !important;
+  transform: translateX(4px);
+}
+
+.events-list-conference-item.active {
+  border-left: 5px solid var(--brand-orange) !important;
+  background-color: rgba(245, 128, 37, 0.02) !important;
+  box-shadow: 0 4px 15px rgba(245, 128, 37, 0.05) !important;
+}
+
+.events-list-conference-item-sidebar {
+  width: 140px !important;
+  flex-shrink: 0 !important;
+  font-weight: bold !important;
+  color: var(--brand-orange) !important;
+  font-size: 0.95rem !important;
+}
+
+.events-list-conference-item-details {
+  flex: 1 !important;
+}
+
+.events-list-conference-item-details .field--name-title {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: var(--neutral-dark) !important;
+  line-height: 1.3 !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+}
+
+.events-list-conference-item-details .field--name-field-ps-events-location-name {
+  font-size: 0.85rem !important;
+  color: #666 !important;
+  margin-top: 4px !important;
+}
+
+.event-speaker-meta {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* Badges for Event categories */
+.event-type-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+}
+
+.type-talk {
+  background-color: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.type-break {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+
+.type-social {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+/* SIDEBAR - CLOCK & SCAN */
+.clock-scan-section {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.kiosk-clock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.clock-digits {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--neutral-dark);
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.clock-date-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.kiosk-qr-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.kiosk-qr-box {
+  width: 120px;
+  height: 120px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kiosk-qr-box canvas,
+.kiosk-qr-box img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+.kiosk-qr-label {
+  font-size: 0.72rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #666;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* SIDEBAR - SPEAKER / EVENT INFO */
+.featured-event-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.featured-label {
+  font-size: 0.78rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--brand-orange);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.featured-label-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--brand-orange);
+  border-radius: 50%;
+}
+
+.speaker-profile {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.speaker-avatar-crop {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid var(--brand-orange);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.speaker-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.speaker-profile-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.speaker-profile-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--neutral-dark);
+  line-height: 1.2;
+}
+
+.speaker-profile-affiliation {
+  font-size: 0.9rem;
+  color: var(--brand-orange);
+  font-weight: 600;
+}
+
+.featured-talk-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.featured-talk-title {
+  font-family: "Georgia", serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--neutral-dark);
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.featured-talk-abstract-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.featured-talk-abstract-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-talk-abstract {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #4a5568;
+  text-align: justify;
+}
+
+/* Dashboard Footer */
+.dashboard-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: #718096;
+  padding: 0 1.5rem 1rem 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Fade in class */
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Adjustments for 4k displays */
+@media (min-width: 2560px) {
+  body {
+    font-size: 1.4rem !important;
+  }
+  .flat-card {
+    padding: 2.5rem !important;
+    border-radius: 20px !important;
+  }
+  .site-logo img {
+    height: 80px;
+  }
+  .site-name a {
+    font-size: 2.5rem;
+  }
+  .site-slogan {
+    font-size: 1.3rem;
+  }
+  .clock-digits {
+    font-size: 4.5rem;
+  }
+  .clock-date-text {
+    font-size: 1.4rem;
+  }
+  .kiosk-qr-box {
+    width: 180px;
+    height: 180px;
+  }
+  .kiosk-qr-label {
+    font-size: 1rem;
+  }
+  .day-tab-btn {
+    font-size: 1.3rem !important;
+    padding: 1rem 2rem !important;
+    border-radius: 12px !important;
+  }
+  .events-list-conference-item {
+    padding: 25px !important;
+    border-radius: 15px !important;
+    margin-bottom: 20px !important;
+  }
+  .events-list-conference-item-sidebar {
+    width: 220px !important;
+    font-size: 1.3rem !important;
+  }
+  .events-list-conference-item-details .field--name-title {
+    font-size: 1.6rem !important;
+  }
+  .speaker-profile-name {
+    font-size: 2.2rem;
+  }
+  .speaker-profile-affiliation {
+    font-size: 1.4rem;
+  }
+  .featured-talk-title {
+    font-size: 1.8rem;
+  }
+  .featured-talk-abstract {
+    font-size: 1.35rem;
+  }
+  .speaker-avatar-crop {
+    width: 140px;
+    height: 140px;
+  }
+}

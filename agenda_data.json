@@ -1,0 +1,286 @@
+{
+  "2026-06-28": {
+    "day_name": "Sunday, June 28",
+    "date": "2026-06-28",
+    "events": [
+      {
+        "time": "3:00 pm - 5:30 pm",
+        "title": "Open Discussion: Artificial and Real Intelligence for Human and Machine Learning",
+        "location": "101 - Sherrerd Hall",
+        "link": "/events/2026/open-discussion-artificial-and-real-intelligence-human-and-machine-learning",
+        "speaker": "Open Discussion: Artificial and Real Intelligence for Human and Machine Learning",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "6:00 pm - 8:00 pm",
+        "title": "Welcoming Reception",
+        "location": "Nassau Inn",
+        "link": "/events/2026/welcoming-reception",
+        "speaker": "Welcoming Reception",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      }
+    ]
+  },
+  "2026-06-29": {
+    "day_name": "Monday, June 29",
+    "date": "2026-06-29",
+    "events": [
+      {
+        "time": "8:00 am - 9:00 am",
+        "title": "Breakfast and Welcome Remarks",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/breakfast-and-welcome-remarks",
+        "speaker": "Breakfast and Welcome Remarks",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "9:00 am - 10:00 am",
+        "title": "Jelani Nelson",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/jelani-nelson",
+        "speaker": "Jelani Nelson",
+        "affiliation": "University of California at Berkeley",
+        "abstract": "Event Description\n              We define the M-point query problem in data streams: for a pre-defined matrix M, a vector x is subject to turnstile updates such that the response \u1ef9_i to query(i) satisfies |y_i \u2212 \u1ef9_i | \u2264 \u03b5\u2225x\u22251, with y := Mx. We show that if M can be factorized as M = AB, where the products of certain operator norms of A, B are small, then a space-efficient algorithm exists. An important special case is when M is the lower triangular matrix of all ones, which relates to the quantiles problem with additive error \u00b1\u03b5n, where n is the size of the database.Our approach not only generalizes the existing \u201cdyadic\u201d approach to turnstile quantiles of Cormode and Muthukrishnan (J. Alg, 2005), but also simplifies and improves the analysis of the state-of-the-art dyadic CountSketch of Wang et al. (SIGMOD, 2013), while providing a new framework to potentially provide even further improvements. We also improve the prior lower bound for quantiles, narrowing the gap to optimality.Our approach resembles the matrix mechanism of Li et al. (PODS, 2010) used in differential privacy: given a database x represented as a high-dimensional vector and a matrix M, the mechanism outputs a private approximation \u1ef9 that is close to y := Mx, where the privacy\u2013error tradeoff depends on a certain matrix factorization norm of M.Joint work with Jan Bulanek, Ravi Kumar, Raghu Meka,Tam\u00e1s Sarl\u00f3s.\n          Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": "images/speakers/nelson_jelani.jpg"
+      },
+      {
+        "time": "10:00 am - 10:30 am",
+        "title": "Break",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/break",
+        "speaker": "Break",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "10:30 am - 11:30 am",
+        "title": "Dwight Anderson Williams II",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/dwight-anderson-williams-ii",
+        "speaker": "Dwight Anderson Williams II",
+        "affiliation": "Morgan State University",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": "images/speakers/williams_dwight.jpeg"
+      },
+      {
+        "time": "11:30 am - 1:00 pm",
+        "title": "Lunch",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/lunch",
+        "speaker": "Lunch",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "1:00 pm - 2:00 pm",
+        "title": "Trajan Hammonds",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/trajan-hammonds",
+        "speaker": "Trajan Hammonds",
+        "affiliation": "Aarhus University / MIT",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": "images/speakers/hammonds_trajan.jpg"
+      },
+      {
+        "time": "2:00 pm - 2:30 pm",
+        "title": "Break",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/break",
+        "speaker": "Break",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "2:30 pm - 3:30 pm",
+        "title": "Gelonia Dent",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/gelonia-dent",
+        "speaker": "Gelonia Dent",
+        "affiliation": "Medgar Evars College, CUNYGoogle",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": "images/speakers/croak_marian.jpg"
+      },
+      {
+        "time": "3:30 pm - 4:00 pm",
+        "title": "Break",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/break",
+        "speaker": "Break",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "4:00 pm - 5:00 pm",
+        "title": "Panel Discussion",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/panel-discussion",
+        "speaker": "Panel Discussion",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "5:30 pm - 7:00 pm",
+        "title": "Student Poster Presentations",
+        "location": "Louis A. Simpson International Building",
+        "link": "/posters",
+        "speaker": "Poster Presentations",
+        "affiliation": "",
+        "abstract": "Location: Louis A. Simpson International BuildingOperations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      }
+    ]
+  },
+  "2026-06-30": {
+    "day_name": "Tuesday, June 30",
+    "date": "2026-06-30",
+    "events": [
+      {
+        "time": "8:00 am - 9:00 am",
+        "title": "Breakfast and Welcome Remarks",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/breakfast-and-welcome-remarks-0",
+        "speaker": "Breakfast and Welcome Remarks",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "9:00 am - 10:00 am",
+        "title": "Corey Toler-Franklin",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/corey-toler-franklin",
+        "speaker": "Corey Toler-Franklin",
+        "affiliation": "Barnard College, Columbia University",
+        "abstract": "Event Description\n              Accurate detection of abnormal tissue across diverse medical datasets is a challenge. Failing to differentiate between visually similar but conceptually different tissues could lead to false positives, inaccurate diagnoses and unnecessary invasive procedures. This talk introduces a method that uses a transformer-based network to improve cancer tumor detection in complex medical datasets. The approach overcomes limitations with current dot-self attention mechanisms that make tokens from different semantic classes appear almost identical. Our results show significant improvement for object detection tasks on concealed-object datasets. I will compare these recent results with our earlier multiscale cancer tumor detection methods, and discuss current work that focuses on cancer biomarker detection. I will conclude with a discussion of techniques that combine similar dot self-attention modules with graph neural networks to analyze disruptive time-series data for social network reconstruction and material analysis in active forensic investigations.\n          Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": "images/speakers/tolerfranklin_c.jpg"
+      },
+      {
+        "time": "10:00 am - 10:30 am",
+        "title": "Break",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/break",
+        "speaker": "Break",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "10:30 am - 11:30 am",
+        "title": "James Whitfield",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/james-whitfield",
+        "speaker": "James Whitfield",
+        "affiliation": "Dartmouth College",
+        "abstract": "Event Description\n              Counting perfect matchings in a graph is computationally hard, unless the graph is planar. There, a 1960s combinatorial technique (Kasteleyn\u2019s method) turns the problem into the evaluation of a determinant-like quantity, making it efficiently solvable. The same algebraic surprise appears in the quantum physics of non-interacting fermions: the antisymmetry of identical particles forces signs that collapse an enormous sum over configurations into a tractable determinant. The quantum circuits that describe such free fermions inherit their classical simulability directly from this planar-matching trick, with a simple algebraic condition separating \u201ceasy\u201d gates from universal ones. We then map the broader complexity landscape: free-fermion dynamics are easy, finding their ground state is NP-hard, and adding interactions pushes the problem into the quantum-hard regime. Together, these ideas connect perfect matchings, planar graphs, and fermionic systems into a unified picture at the boundary between the classically tractable and the quantum hard.\n          Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": "images/speakers/whitfield_james.jpg"
+      },
+      {
+        "time": "11:30 am - 1:00 pm",
+        "title": "Lunch",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/lunch",
+        "speaker": "Lunch",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "1:00 pm - 2:00 pm",
+        "title": "Emmanuel Adara",
+        "location": "Julis Romo Rabinowitz Building",
+        "link": "/events/2026/emmanuel-adara",
+        "speaker": "Emmanuel Adara",
+        "affiliation": "Binghamton University",
+        "abstract": "Event Description\n              Accurately modeling the stochastic dynamics of chemical reaction networks is essential for understanding and predicting the behavior of complex biochemical systems. A fundamental framework for such modeling is the Chemical Master Equation (CME), which describes the time evolution of the probability distribution of molecular populations. However, solving the CME remains a significant computational challenge due to the \"curse of dimensionality\", whereby the state space grows exponentially with the number of chemical species, making direct numerical solutions infeasible for all but the simplest systems.In this talk, I will present an overview of several approaches for analyzing and approximating the CME. These include stochastic simulation methods such as Gillespie\u2019s algorithm, continuum approximations based on the Chemical Langevin Equation, and moment-based techniques for estimating key statistical properties of the system. I will also discuss more recent advances, including tensor-train decompositions and machine learning-based surrogate models, which offer scalable alternatives for studying high-dimensional stochastic systems. Together, these methods provide powerful tools for investigating the dynamics of complex chemical and biological networks while mitigating the computational challenges associated with large state spaces.\n          Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": "images/speakers/adara_emmanuel.jpg"
+      },
+      {
+        "time": "2:00 pm - 2:30 pm",
+        "title": "Break",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/break",
+        "speaker": "Break",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "2:30 pm - 3:30 pm",
+        "title": "Jalani Williams",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/jalani-williams",
+        "speaker": "Jalani Williams",
+        "affiliation": "University of Michigan",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": "images/speakers/williams_jalani.jpg"
+      },
+      {
+        "time": "3:30 pm - 4:00 pm",
+        "title": "Break",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/break",
+        "speaker": "Break",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "4:00 pm - 5:00 pm",
+        "title": "Panel Discussion",
+        "location": "Louis A. Simpson International Building",
+        "link": "/events/2026/panel-discussion",
+        "speaker": "Panel Discussion",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "6:00 pm - 8:30 pm",
+        "title": "Banquet",
+        "location": "Prospect House",
+        "link": "/events/2026/banquet",
+        "speaker": "Banquet",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      }
+    ]
+  },
+  "2026-07-01": {
+    "day_name": "Wednesday, July 1",
+    "date": "2026-07-01",
+    "events": [
+      {
+        "time": "9:00 am - 10:00 am",
+        "title": "Breakfast at 125 - Sherrerd Hall",
+        "location": "125 - Sherrerd Hall",
+        "link": "/events/2026/breakfast-125-sherrerd-hall",
+        "speaker": "Breakfast at 125 - Sherrerd Hall",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      },
+      {
+        "time": "10:00 am - 12:00 pm",
+        "title": "Informal Campus Tour",
+        "location": "",
+        "link": "/events/2026/informal-campus-tour",
+        "speaker": "Informal Campus Tour",
+        "affiliation": "",
+        "abstract": "Operations Research & Financial Engineering\nSherrerd Hall, Charlton Street, Princeton, NJ 08544\n609-258-0100Administrative UtilitiesAccessibility accommodation requests must be received at least three weeks prior to event start.Sponsorship of an event does not constitute institutional endorsement of external speakers or views presented.",
+        "image": ""
+      }
+    ]
+  }
+}
