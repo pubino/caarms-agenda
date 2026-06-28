@@ -32,6 +32,9 @@ class AgendaListParser(HTMLParser):
         self.capture_location = False
         self.current_location_text = []
         
+        self.capture_subtitle = False
+        self.current_subtitle_text = []
+        
     def handle_starttag(self, tag, attrs):
         attrs_dict = dict(attrs)
         
@@ -57,17 +60,22 @@ class AgendaListParser(HTMLParser):
                 "time": "",
                 "title": "",
                 "location": "",
-                "link": ""
+                "link": "",
+                "subtitle": ""
             }
             
         # Push to tag stacks to track nesting
         if tag == "div":
             self.div_stack.append(attrs_dict)
-            if self.current_event and len(self.div_stack) >= 2:
-                parent = self.div_stack[-2]
-                if "field--name-field-ps-events-location-name" in parent.get("class", "") and attrs_dict.get("class") == "field__item":
-                    self.capture_location = True
-                    self.current_location_text = []
+            if self.current_event:
+                if "field--name-field-ps-events-subtitle" in attrs_dict.get("class", ""):
+                    self.capture_subtitle = True
+                    self.current_subtitle_text = []
+                elif len(self.div_stack) >= 2:
+                    parent = self.div_stack[-2]
+                    if "field--name-field-ps-events-location-name" in parent.get("class", "") and attrs_dict.get("class") == "field__item":
+                        self.capture_location = True
+                        self.current_location_text = []
                     
         if tag == "span":
             self.span_stack.append(attrs_dict)
@@ -97,6 +105,10 @@ class AgendaListParser(HTMLParser):
                     self.capture_location = False
                     if self.current_event:
                         self.current_event["location"] = "".join(self.current_location_text).strip()
+                if self.capture_subtitle and "field--name-field-ps-events-subtitle" in popped.get("class", ""):
+                    self.capture_subtitle = False
+                    if self.current_event:
+                        self.current_event["subtitle"] = "".join(self.current_subtitle_text).strip()
             
             if self.current_event and not any(d.get("class") == "events-list-conference-item" for d in self.div_stack):
                 time_str = " ".join(self.current_time_texts).replace(" – ", " - ").strip()
@@ -141,6 +153,9 @@ class AgendaListParser(HTMLParser):
             if self.capture_location:
                 self.current_location_text.append(data)
 
+            if self.capture_subtitle:
+                self.current_subtitle_text.append(data)
+
 
 class EventDetailParser(HTMLParser):
     def __init__(self):
@@ -161,6 +176,9 @@ class EventDetailParser(HTMLParser):
         self.body_text = []
         self.in_body = False
         
+        self.subtitle_text = []
+        self.in_subtitle = False
+        
     def handle_starttag(self, tag, attrs):
         attrs_dict = dict(attrs)
         
@@ -175,6 +193,9 @@ class EventDetailParser(HTMLParser):
                 self.in_affiliation = True
             if "field--name-field-ps-body" in attrs_dict.get("class", "") and self.article_depth > 0 and self.footer_depth == 0:
                 self.in_body = True
+            if attrs_dict.get("class") == "event-subtitle":
+                self.in_subtitle = True
+                self.subtitle_text = []
                 
         if tag == "img":
             is_featured = False
@@ -203,6 +224,8 @@ class EventDetailParser(HTMLParser):
                 self.in_affiliation = False
             if "field--name-field-ps-body" in popped.get("class", ""):
                 self.in_body = False
+            if popped.get("class") == "event-subtitle":
+                self.in_subtitle = False
                 
         if tag == "h1" and self.in_h1:
             self.in_h1 = False
@@ -215,6 +238,8 @@ class EventDetailParser(HTMLParser):
             self.affiliation_text.append(data)
         if self.in_body:
             self.body_text.append(data)
+        if self.in_subtitle:
+            self.subtitle_text.append(data)
 
 # 2. Main Crawler Execution Code
 
@@ -309,6 +334,7 @@ def main():
                 "title": title,
                 "location": loc_str,
                 "link": link,
+                "subtitle": ev.get("subtitle", ""),
                 "speaker": "",
                 "affiliation": "",
                 "abstract": "",
@@ -328,6 +354,8 @@ def main():
                     detail_data["speaker"] = detail_parser.h1_text or ""
                     detail_data["affiliation"] = "".join(detail_parser.affiliation_text).strip()
                     detail_data["abstract"] = "".join(detail_parser.body_text).strip()
+                    if detail_parser.subtitle_text:
+                        detail_data["subtitle"] = "".join(detail_parser.subtitle_text).strip()
                     
                     # Download speaker image if available
                     img_src = detail_parser.image_src

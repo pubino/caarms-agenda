@@ -221,7 +221,7 @@ function renderTimeline() {
     const titleL = ev.title.toLowerCase();
     if (titleL.includes("break") || titleL.includes("lunch") || titleL.includes("breakfast")) {
       badgeHtml = `<span class="event-type-badge type-break">Break / Meal</span>`;
-    } else if (titleL.includes("reception") || titleL.includes("banquet")) {
+    } else if (titleL.includes("reception") || titleL.includes("banquet") || titleL.includes("tour")) {
       badgeHtml = `<span class="event-type-badge type-social">Social / Reception</span>`;
     } else {
       badgeHtml = `<span class="event-type-badge type-talk">Talk / Session</span>`;
@@ -252,6 +252,7 @@ function renderTimeline() {
         <span class="field field--name-title field--type-string field--label-hidden">
           <a>${ev.title}</a>
         </span>
+        ${ev.subtitle ? `<div class="event-subtitle-meta"><em>${ev.subtitle}</em></div>` : ""}
         ${speakerLine}
         ${ev.location ? `
         <div class="field field--name-field-ps-events-location-name field--type-string field--label-inline clearfix">
@@ -408,19 +409,36 @@ function highlightFeaturedEvent(index, labelOverride = null) {
   const profileContainer = document.getElementById("featured-speaker-profile");
 
   // Determine if it is a break/social event (no speaker profile)
-  const isBreak = !ev.speaker && !ev.affiliation && !ev.abstract && !ev.image;
+  const titleL = ev.title.toLowerCase();
+  const isBreak = titleL.includes("break") || titleL.includes("lunch") || titleL.includes("breakfast") || titleL.includes("banquet") || titleL.includes("reception") || titleL.includes("tour") || (!ev.speaker && !ev.affiliation && !ev.abstract && !ev.image);
 
   if (isBreak) {
     profileContainer.style.display = "none";
     speakerNameEl.innerText = "";
     speakerAffEl.innerText = "";
     talkTitleEl.innerText = ev.title;
-    abstractEl.innerText = ev.location ? `Location: ${ev.location}. Enjoy the break!` : "Enjoy the break!";
+    
+    let fallbackAbstract = "Enjoy the event!";
+    if (titleL.includes("break")) {
+      fallbackAbstract = "Enjoy the break!";
+    } else if (titleL.includes("lunch") || titleL.includes("breakfast") || titleL.includes("banquet")) {
+      fallbackAbstract = "Enjoy the meal!";
+    } else if (titleL.includes("reception")) {
+      fallbackAbstract = "Enjoy the reception!";
+    } else if (titleL.includes("tour")) {
+      fallbackAbstract = "Enjoy the campus tour!";
+    }
+    
+    if (ev.abstract) {
+      abstractEl.innerText = ev.abstract;
+    } else {
+      abstractEl.innerText = ev.location ? `Location: ${ev.location}. ${fallbackAbstract}` : fallbackAbstract;
+    }
   } else {
     profileContainer.style.display = "flex";
     speakerNameEl.innerText = ev.speaker || ev.title;
     speakerAffEl.innerText = ev.affiliation || "";
-    talkTitleEl.innerText = ev.speaker ? ev.title : "";
+    talkTitleEl.innerText = ev.subtitle || "";
     abstractEl.innerText = ev.abstract || "No abstract available for this talk.";
 
     // Avatar resolution - hide avatar container completely if there is no speaker image
