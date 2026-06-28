@@ -149,6 +149,9 @@ class EventDetailParser(HTMLParser):
         self.h1_text = None
         self.in_h1 = False
         
+        self.article_depth = 0
+        self.footer_depth = 0
+        
         self.image_src = None
         self.image_alt = None
         
@@ -161,11 +164,16 @@ class EventDetailParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
         attrs_dict = dict(attrs)
         
+        if tag == "article":
+            self.article_depth += 1
+        if tag == "footer":
+            self.footer_depth += 1
+            
         if tag == "div":
             self.div_stack.append(attrs_dict)
             if "field--name-field-ps-event-speaker-affillong" in attrs_dict.get("class", ""):
                 self.in_affiliation = True
-            if "field--name-field-ps-body" in attrs_dict.get("class", ""):
+            if "field--name-field-ps-body" in attrs_dict.get("class", "") and self.article_depth > 0 and self.footer_depth == 0:
                 self.in_body = True
                 
         if tag == "img":
@@ -184,6 +192,11 @@ class EventDetailParser(HTMLParser):
                 self.h1_text = []
 
     def handle_endtag(self, tag):
+        if tag == "article":
+            self.article_depth = max(0, self.article_depth - 1)
+        if tag == "footer":
+            self.footer_depth = max(0, self.footer_depth - 1)
+            
         if tag == "div" and self.div_stack:
             popped = self.div_stack.pop()
             if "field--name-field-ps-event-speaker-affillong" in popped.get("class", ""):
